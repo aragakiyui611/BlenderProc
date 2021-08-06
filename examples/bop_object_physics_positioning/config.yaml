@@ -28,7 +28,7 @@
         "model_type": "cad",
         "mm2m": True,
         "sample_objects": True,
-        "num_of_objs_to_sample": 3,
+        "num_of_objs_to_sample": 1,
         "add_properties": {
           "cp_physics": True
         }
@@ -41,10 +41,10 @@
         "model_type": "",
         "mm2m": True,
         "sample_objects": True,
-        "num_of_objs_to_sample": 3,
+        "num_of_objs_to_sample": 1,
         "obj_instances_limit": 1,
         "add_properties": {
-          "cp_physics": True
+          "cp_physics": True  # change this to false if want it stay still
         },
         "cf_set_shading": "SMOOTH"
       }
@@ -56,7 +56,8 @@
         "model_type": "",
         "mm2m": True,
         "sample_objects": True,
-        "num_of_objs_to_sample": 10,
+        "num_of_objs_to_sample": 5,
+        "obj_instances_limit": 1,
         "add_properties": {
           "cp_physics": True
         },
@@ -237,13 +238,13 @@
           "provider":"sampler.Uniform3d",
           "min": {
             "provider": "sampler.Uniform3d",
-            "min": [-0.3, -0.3, 0.0],
+            "min": [-0.4, -0.4, 0.0],
             "max": [-0.2, -0.2, 0.0]
           },
           "max": {
             "provider": "sampler.Uniform3d",
-            "min": [0.2, 0.2, 0.4],
-            "max": [0.3, 0.3, 0.6]
+            "min": [0.2, 0.2, 0.2],
+            "max": [0.4, 0.4, 0.2]
           }
         },
         "rot_sampler":{
@@ -304,12 +305,12 @@
               "type": "MESH"
             }
           },
-          "number_of_samples": 10,
+          "number_of_samples": 5,
           "location": {
             "provider": "sampler.Shell",
             "center": [0, 0, 0],
-            "radius_min": 0.61,
-            "radius_max": 1.24,
+            "radius_min": 0.9,
+            "radius_max": 1.5,
             "elevation_min": 5,
             "elevation_max": 89,
             "uniform_elevation": True
@@ -341,11 +342,18 @@
     {
       "module": "renderer.RgbRenderer",
       "config": {
-        "samples": 50,
+        "samples": 50, # image quality
         "render_distance": True,
         "image_type": "JPEG"
       }
     },
+    # {
+    #   "module": "renderer.SegMapRenderer",
+    #   "config": {
+    #     "map_by": ["instance", "class", "cp_bop_dataset_name"],
+    #     "default_values": {"class":0, "cp_bop_dataset_name": "None"}
+    #   }
+    # },
     {
       "module": "writer.BopWriter",
       "config": {
